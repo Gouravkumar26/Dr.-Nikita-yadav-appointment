@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Nitika Yadav | MD Dermatologist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-stethoscope"></i> Dr.<span>Nitika Yadav</span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact/Appointment</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Your Skin Deserves <br><span class="highlight">Expert Care</span></h1>
+            <p>Advanced dermatological treatments tailored to your skin's unique needs. Experience healthy, glowing skin with trusted medical expertise.</p>
+            <a href="#contact" class="btn btn-primary">Book an Appointment</a>
+        </div>
+        <div class="hero-image">
+            <div class="image-bg-effect"></div>
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600" alt="Dr. Dermatologist">
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-box">
+            <i class="fa-solid fa-user-md"></i>
+            <h3>10+ Years</h3>
+            <p>Experience</p>
+        </div>
+        <div class="stat-box">
+            <i class="fa-solid fa-smile"></i>
+            <h3>5000+</h3>
+            <p>Happy Patients</p>
+        </div>
+        <div class="stat-box">
+            <i class="fa-solid fa-award"></i>
+            <h3>Certified</h3>
+            <p>MD Dermatologist</p>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-container">
+            <h2>Meet Dr. Nitika Yadav (MD)</h2>
+            <p class="subtitle">Board-Certified Dermatologist & Cosmetologist</p>
+            <p>Dr. Nitika Yadav has over a decade of experience in medical and aesthetic dermatology. She specializes in advanced acne treatments, anti-aging solutions, laser therapy, and skin rejuvenation. She believes in a holistic approach, combining medical science with personalized care to deliver natural-looking results.</p>
+            <div class="credentials">
+                <span><i class="fa-solid fa-graduation-cap"></i> MD - Dermatology</span>
+                <span><i class="fa-solid fa-certificate"></i> AIIMS Delhi</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2 class="section-title">Our Expert Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fa-solid fa-hand-holding-medical"></i>
+                <h3>Clinical Dermatology</h3>
+                <p>Treatment for acne, eczema, psoriasis, hair loss, and other medical skin conditions.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <h3>Aesthetic Procedures</h3>
+                <p>Chemical peels, anti-aging therapies, botox, fillers, and advanced skin rejuvenation.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Laser Treatments</h3>
+                <p>Safe and effective laser hair removal, scar revision, and pigmentation removal.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <h2 class="section-title">What Our Patients Say</h2>
+        <div class="testimonial-container">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Dr. Nitika completely transformed my skin. Her acne treatment worked wonders when nothing else did. Highly recommended!"</p>
+                <h4>- Gourav Kumar</h4>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"The clinic is very clean and professional. The laser treatment for my scars showed results within just two sessions."</p>
+                <h4>- Komal Jangir</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">Book An Appointment</h2>
+        <div class="contact-wrapper">
+            <div class="appointment-form">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Your Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="service" required>
+                            <option value="" disabled selected>Select Service</option>
+                            <option value="clinical">Clinical Dermatology</option>
+                            <option value="aesthetic">Aesthetic Procedures</option>
+                            <option value="laser">Laser Treatment</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Submit Request</button>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <h3>Clinic Details</h3>
+                <p><i class="fa-solid fa-location-dot"></i> 102, Radiant Skin Clinic, Medical Road, New Delhi</p>
+                <p><i class="fa-solid fa-envelope"></i> info@drradiantskin.com</p>
+                <p><i class="fa-solid fa-clock"></i> Mon - Sat: 10:00 AM - 07:00 PM</p>
+                <div class="direct-calls">
+                    <a href="tel:+919876543210" class="call-direct-btn"><i class="fa-solid fa-phone"></i> Call Clinic</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Dr. Nitika Yadav Skin Clinic. All rights reserved.</p>
+    </footer>
+
+    <div class="floating-buttons">
+        <a href="https://wa.me/919876543210?text=Hi%20Doctor,%20I%20want%20to%20book%20an%20appointment." class="float-btn whatsapp" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="tel:+919876543210" class="float-btn phone">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
