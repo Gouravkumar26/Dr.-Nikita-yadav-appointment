@@ -101,16 +101,25 @@ body {
 }
 
 /* Hero Section */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 80px;
-    padding: 120px 8% 40px;
-    background: linear-gradient(135deg,#ecfeff,#dbeafe,#f0fdfa);
-    overflow: hidden;
-    min-height: 85vh;
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:80px;
+    padding:120px 8% 40px;
+
+    background:
+    linear-gradient(rgba(255,255,255,0.65), rgba(255,255,255,0.65)),
+    url("images/hero-bg.png");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    overflow:hidden;
+    min-height:85vh;
 }
 
 .hero-content {
@@ -181,26 +190,51 @@ body {
     flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
     position: relative;
 }
 
+/* Glow background behind image */
+.hero-image::before {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(13,148,136,0.35), transparent 70%);
+    filter: blur(40px);
+    z-index: 1;
+    animation: glowPulse 5s ease-in-out infinite;
+}
+
+/* Main image */
 .hero-image img {
-    max-width: 80%;
-    border-radius: 20px;
+    max-width: 75%;
+    border-radius: 25px;
     z-index: 2;
-    box-shadow: var(--shadow);
-    animation: floatImg 4s ease-in-out infinite;
-    transition: transform 0.4s ease;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    animation: floatImg 5s ease-in-out infinite;
+    transition: all 0.4s ease;
+    position: relative;
 }
 
+/* Hover effect */
 .hero-image img:hover {
-    transform: scale(1.03);
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.25);
 }
 
+/* Floating animation */
 @keyframes floatImg {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
+    50% { transform: translateY(-15px); }
 }
+
+/* Glow pulse animation */
+@keyframes glowPulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
 
 /* Stats Section */
 .stats {
@@ -258,33 +292,68 @@ body {
 }
 
 /* About Section */
-.about {
+.about{
     padding: 100px 8%;
-    background: linear-gradient(135deg,#f8fafc,#e0f2fe,#ecfeff);
     text-align: center;
+
+    background:
+        linear-gradient(rgba(255,255,255,0.78), rgba(255,255,255,0.78)),
+        url("images/about-bg.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .about-container{
     max-width: 900px;
     margin: auto;
     padding: 60px;
-    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+
+    background: rgba(79, 147, 159, 0.88);
+    backdrop-filter: blur(10px);
+
     border-radius: 25px;
-    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
-    color: #ffffff;
+    box-shadow: 0 20px 50px rgba(15,23,42,.25);
+
+    color: #1e293b;
     text-align: center;
+}
+
+.about-container h2{
+    color:#0f172a;
+    font-size:42px;
+    font-weight:700;
+}
+
+.about-container .subtitle{
+    color:#0d9488;
+    font-size:20px;
+    font-weight:600;
+}
+
+
+
+.credentials span{
+    color:#0f172a;
+    font-weight:600;
+}
+
+.credentials i{
+    color:#0d9488;
 }
 
 /* Heading */
 .about-container h2{
-    color: #ffffff;
+    color: #111112;
     font-size: 38px;
     margin-bottom: 15px;
 }
 
 /* Subtitle */
 .about-container .subtitle{
-    color: #38bdf8;
+    color: #0b0b0b;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 20px;
@@ -292,8 +361,8 @@ body {
 
 /* Paragraph */
 .about-container p{
-    color: #e2e8f0;
-    line-height: 1.8;
+    color: #190909f5;
+    line-height: 1.9;
 }
 
 /* Credentials */
@@ -331,14 +400,52 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
-.service-card {
+.service-card{
+    position: relative;
+    overflow: hidden;
     padding: 40px 30px;
-    background: var(--white);
     border-radius: 15px;
+    min-height: 350px;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     box-shadow: var(--shadow);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    transition: transform .35s ease, box-shadow .35s ease;
     text-align: center;
+    color: #fff;
 }
+
+.service-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.45);
+}
+
+.service-card i,
+.service-card h3,
+.service-card p{
+    position:relative;
+    z-index:2;
+    color:#fff;
+}
+/* Clinical Dermatology */
+.clinical{
+    background-image: url("images/clinical.png");
+}
+
+/* Aesthetic Procedures */
+.aesthetic{
+    background-image: url("images/aesthetic.png");
+}
+
+/* Laser Treatments */
+.laser{
+    background-image: url("images/laser.png");
+}
+
 .service-card:hover {
     transform: translateY(-10px) scale(1.02);
     box-shadow: 0 15px 35px rgba(13, 148, 136, 0.18);
@@ -358,34 +465,77 @@ body {
     margin-bottom: 20px;
     transition: transform 0.4s ease, color 0.3s ease;
 }
-.service-card:hover i {
-    transform: scale(1.2) rotate(8deg);
+.service-card:hover{
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(13,148,136,.18);
+}
+
+.service-card:hover::before{
+    background: rgba(13,148,136,.55);
 }
 .service-card h3 { margin-bottom: 15px; }
 .service-card p { color: var(--text-light); }
 
 /* Testimonials */
-.testimonials { padding: 100px 8%; background: var(--secondary-color);
-                 background: linear-gradient(135deg,#0f172a,#1e293b,#0d9488);color:#fff; }
-.testimonial-container { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
-.testimonial-card {
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(18px);
-    border:1px solid rgba(255,255,255,.15);
-    color:#fff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-    max-width: 450px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.testimonial-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-}
-.stars { color: #f59e0b; margin-bottom: 15px; }
-.testimonial-card h4 { margin-top: 15px; color: #5eead4; }
+.testimonials{
+    position: relative;
+    padding: 100px 8%;
+    background:
+        linear-gradient(rgba(15,23,42,0.85), rgba(13,148,136,0.85)),
+        url("images/ChatGPT Image Jul 1, 2026, 02_43_51 PM.png");
 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+    overflow: hidden;
+}
+
+.testimonials .section-title{
+    color: #fff;
+}
+
+.testimonial-container{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonial-card{
+    background: rgba(255,255,255,.10);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,.15);
+    color: #fff;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+    max-width: 450px;
+    transition: all .35s ease;
+}
+
+.testimonial-card:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(0,0,0,.35);
+}
+
+.stars{
+    color:#FFD700;
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+.testimonial-card p{
+    color:#f1f5f9;
+}
+
+.testimonial-card h4{
+    margin-top:15px;
+    color:#67e8f9;
+}
 /* Contact/Appointment */
 .contact { padding: 100px 8%; }
 .contact-wrapper { display: flex; gap: 50px; flex-wrap: wrap; }
@@ -422,9 +572,14 @@ body {
     transform: translateY(-3px);
     box-shadow: 0 8px 18px rgba(13, 148, 136, 0.35);
 }
-.contact-info { flex: 1; min-width: 300px; background: #111827; color: var(--white); padding: 40px; border-radius: 15px; }
+.contact-info { flex: 1; min-width: 300px; background: #111827; color: var(--black); padding: 40px; border-radius: 15px;
+                background-image: url("images/clinic-bg.jpg");
+                background-size: cover;
+                background-position: center; }
 .contact-info h3 { margin-bottom: 25px; }
-.contact-info p { margin-bottom: 20px; color: #9ca3af; }
+.contact-info p { margin-bottom: 20px; color: #0c0c0c; 
+                  font-size: 17px; font-weight: 600; /* Bold */ line-height: 1.8;
+}
 .contact-info i { color: var(--primary-color); margin-right: 10px; }
 .call-direct-btn {
     display: inline-block;
@@ -512,4 +667,47 @@ footer { text-align: center; padding: 30px; background: #0b0f19; color: #6b7280;
     .nav-links.active { left: 0; }
     .nav-links li { margin: 15px 0; }
     .nav-links li a { margin: 0; }
+}
+
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Base animation state */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+/* Active state */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fade left */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: all 0.8s ease;
+}
+
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Fade right */
+.reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: all 0.8s ease;
+}
+
+.reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
 }
