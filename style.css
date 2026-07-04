@@ -147,7 +147,7 @@ h1, h2, h3, h4 {
 /* Hero badge — elevated to a proper H3-level heading treatment */
 .hero-content .eyebrow.hero-badge {
     font-family: var(--font-display);
-    font-size: clamp(22px, 2.7vw, 30px);
+    font-size: clamp(20px, 5.5vw, 30px);   /* changed: mobile pe aur chhota ho sakta hai */
     font-weight: 700;
     font-style: normal;
     text-transform: none;
@@ -156,6 +156,11 @@ h1, h2, h3, h4 {
     color: var(--ink);
     gap: 14px;
     margin-bottom: 20px;
+    flex-wrap: wrap;              /* new: dash + text ko wrap hone do */
+    width: 100%;                  /* new: container ki full width le, shrink-to-fit overflow na ho */
+    max-width: 100%;
+    word-break: break-word;       /* new: agar zaroorat pade to "BOARD-CERTIFIED" bhi wrap ho sake */
+    overflow-wrap: break-word;
 }
 .hero-content .eyebrow.hero-badge::before {
     width: 30px;
