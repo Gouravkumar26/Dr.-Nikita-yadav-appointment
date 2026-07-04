@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (p.y > rect.height) p.y = 0;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(15, 118, 110, ${p.a})`;
+                ctx.fillStyle = `rgba(168, 118, 69, ${p.a})`;
                 ctx.fill();
             });
             requestAnimationFrame(drawParticles);
