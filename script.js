@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const hasGsap = typeof gsap !== 'undefined';
+    const hasSplitType = typeof SplitType !== 'undefined';
     if (hasGsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
 
     /* ---------------------------- Loading Screen ---------------------------- */
@@ -216,13 +217,54 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         tl.fromTo('.hero-content .eyebrow', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6 }, 0)
-          .fromTo('.hero-content > p', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, 0.55)
           .fromTo('.hero-actions', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, 0.7)
           .fromTo('.trust-badges', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, 0.82)
           .fromTo('.hero-image', { opacity: 0, scale: 0.85, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 1 }, 0.3);
     }
     // Fallback: if load event is slow, still reveal hero content
     setTimeout(playHeroSequence, 2600);
+
+    /* ---------------------------- Word-by-word Reveal (GSAP + SplitType) ---------------------------- */
+    // Applies to every [data-word-reveal] paragraph (hero intro + about intro).
+    // Words are split individually, fade + translateY in one at a time on
+    // scroll, and previously revealed words are left untouched (no exit
+    // animation), so the whole paragraph builds up and stays visible.
+    function initWordReveal() {
+        const wordRevealEls = document.querySelectorAll('[data-word-reveal]');
+        if (!wordRevealEls.length) return;
+
+        // Graceful fallback: just show the text if a dependency is missing
+        // or the user prefers reduced motion.
+        if (prefersReducedMotion || !hasGsap || !hasSplitType) {
+            wordRevealEls.forEach(el => { el.style.opacity = 1; });
+            return;
+        }
+
+        wordRevealEls.forEach(el => {
+            // The paragraph's own opacity is now controlled per-word, so make
+            // the container visible immediately and let the words handle it.
+            el.style.opacity = 1;
+
+            const split = new SplitType(el, { types: 'words', tagName: 'span' });
+            if (!split.words || !split.words.length) return;
+
+            gsap.set(split.words, { opacity: 0, y: 26 });
+
+            gsap.to(split.words, {
+                opacity: 1,
+                y: 0,
+                duration: 0.65,
+                ease: 'power3.out',
+                stagger: 0.09,
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 88%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+    }
+    initWordReveal();
 
     /* ---------------------------- Ambient Particle Field (hero canvas) ---------------------------- */
     const canvas = document.getElementById('particleField');

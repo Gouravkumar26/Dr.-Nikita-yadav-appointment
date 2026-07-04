@@ -1192,6 +1192,18 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); font-weigh
 }
 .phone { background-color: var(--teal-700); }
 
+/* ---------------------------- Word-by-word Reveal (GSAP + SplitType) ---------------------------- */
+/* Elements flagged with [data-word-reveal] are split into individual words by
+   SplitType at runtime; each word starts hidden/offset and fades in on scroll,
+   one at a time, while previously revealed words remain visible. */
+[data-word-reveal] {
+    opacity: 0; /* becomes visible via JS once split; prevents FOUC if JS is slow to init */
+}
+[data-word-reveal] .word {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
 /* ---------------------------- Scroll Reveal ---------------------------- */
 .reveal { opacity: 0; transition: opacity 0.9s var(--ease-soft), transform 0.9s var(--ease-soft), filter 0.9s var(--ease-soft); filter: blur(6px); }
 .reveal[data-reveal="fade"] { transform: translateY(24px); }
