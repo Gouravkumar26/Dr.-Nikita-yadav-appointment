@@ -1,20 +1,3 @@
-Task 1
-
-Home page paragraph:
-Create a premium word-by-word reveal animation using GSAP + SplitType.
-
-Requirements:
-- One word at a time
-- Previous words stay visible
-- Fade + translateY animation
-- Trigger on scroll
-- Smooth and premium
-- Modify only the existing code.
-- Return the COMPLETE updated HTML, CSS and JavaScript.
-
-
-
-
 
 Task 2
 

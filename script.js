@@ -224,13 +224,70 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fallback: if load event is slow, still reveal hero content
     setTimeout(playHeroSequence, 2600);
 
+    /* ---------------------------- About: Heading → Paragraph Word Reveal (GSAP + SplitType) ---------------------------- */
+    // The About heading ("Meet Dr. Nitika Yadav, MD") reveals one word at a
+    // time; once every heading word is in, the paragraph beneath it starts
+    // its own word-by-word reveal using the same animation. Both are driven
+    // by a single GSAP timeline so the paragraph is guaranteed to start only
+    // after the heading has finished, on one shared scroll trigger.
+    function initAboutWordReveal() {
+        const heading = document.querySelector('[data-word-reveal-heading]');
+        const paragraph = document.querySelector('.about-content [data-word-reveal]');
+        if (!heading || !paragraph) return false;
+
+        if (prefersReducedMotion || !hasGsap || !hasSplitType) {
+            heading.style.opacity = 1;
+            paragraph.style.opacity = 1;
+            return true;
+        }
+
+        heading.style.opacity = 1;
+        paragraph.style.opacity = 1;
+
+        const headingSplit = new SplitType(heading, { types: 'words', tagName: 'span' });
+        const paragraphSplit = new SplitType(paragraph, { types: 'words', tagName: 'span' });
+
+        if (!headingSplit.words || !headingSplit.words.length || !paragraphSplit.words || !paragraphSplit.words.length) {
+            return true;
+        }
+
+        gsap.set(headingSplit.words, { opacity: 0, y: 22 });
+        gsap.set(paragraphSplit.words, { opacity: 0, y: 22 });
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: heading,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            }
+        })
+        .to(headingSplit.words, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power3.out',
+            stagger: 0.12
+        })
+        .to(paragraphSplit.words, {
+            opacity: 1,
+            y: 0,
+            duration: 0.55,
+            ease: 'power3.out',
+            stagger: 0.045
+        }, '+=0.15'); // paragraph only begins once every heading word has landed
+
+        return true;
+    }
+    const aboutHandled = initAboutWordReveal();
+
     /* ---------------------------- Word-by-word Reveal (GSAP + SplitType) ---------------------------- */
-    // Applies to every [data-word-reveal] paragraph (hero intro + about intro).
-    // Words are split individually, fade + translateY in one at a time on
-    // scroll, and previously revealed words are left untouched (no exit
-    // animation), so the whole paragraph builds up and stays visible.
+    // Applies to remaining [data-word-reveal] paragraphs (currently the hero
+    // intro). Words are split individually, fade + translateY in one at a
+    // time on scroll, and previously revealed words are left untouched (no
+    // exit animation), so the whole paragraph builds up and stays visible.
     function initWordReveal() {
-        const wordRevealEls = document.querySelectorAll('[data-word-reveal]');
+        const wordRevealEls = Array.from(document.querySelectorAll('[data-word-reveal]'))
+            .filter(el => !(aboutHandled && el.closest('.about-content')));
         if (!wordRevealEls.length) return;
 
         // Graceful fallback: just show the text if a dependency is missing

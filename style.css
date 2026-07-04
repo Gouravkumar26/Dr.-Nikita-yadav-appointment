@@ -766,20 +766,26 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); font-weigh
     position: relative;
     padding: 44px 32px;
     border-radius: var(--r-lg);
-    background: rgba(255,255,255,0.55);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    /* Frosted glass surface */
+    background: rgba(255, 255, 255, 0.36);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    /* Premium layered shadow: inner glass sheen + soft ambient + deep drop */
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.55),
+        0 10px 30px rgba(6, 58, 55, 0.08),
+        0 30px 60px rgba(6, 58, 55, 0.08);
+    transition: transform 0.55s var(--ease), box-shadow 0.55s var(--ease),
+                background 0.55s var(--ease), border-color 0.55s var(--ease);
     text-align: left;
-    border: 1px solid rgba(255,255,255,0.6);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     perspective: 800px;
     overflow: hidden;
     transform-style: preserve-3d;
 }
-.clinical { background: linear-gradient(155deg, rgba(20,184,166,0.10), rgba(255,255,255,0.6)), url("images/clinical.png") center/cover no-repeat; background-blend-mode: overlay; }
-.aesthetic { background: linear-gradient(155deg, rgba(6,182,212,0.10), rgba(255,255,255,0.6)), url("images/aesthetic.png") center/cover no-repeat; background-blend-mode: overlay; }
-.laser { background: linear-gradient(155deg, rgba(201,165,107,0.10), rgba(255,255,255,0.6)), url("images/laser.png") center/cover no-repeat; background-blend-mode: overlay; }
+.clinical { background: linear-gradient(155deg, rgba(20,184,166,0.10), rgba(255,255,255,0.36)), url("images/clinical.png") center/cover no-repeat; background-blend-mode: overlay; }
+.aesthetic { background: linear-gradient(155deg, rgba(6,182,212,0.10), rgba(255,255,255,0.36)), url("images/aesthetic.png") center/cover no-repeat; background-blend-mode: overlay; }
+.laser { background: linear-gradient(155deg, rgba(201,165,107,0.10), rgba(255,255,255,0.36)), url("images/laser.png") center/cover no-repeat; background-blend-mode: overlay; }
 
 /* Radial glow that follows the cursor within a card */
 .card-glow {
@@ -787,29 +793,38 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); font-weigh
     inset: 0;
     z-index: 0;
     opacity: 0;
-    background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(20,184,166,0.18), transparent 65%);
+    background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(20,184,166,0.20), transparent 65%);
     transition: opacity 0.4s ease;
     pointer-events: none;
 }
 .service-card:hover .card-glow { opacity: 1; }
 
+/* Crisp gradient ring — the sharp half of the glow border */
 .service-card::before {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: var(--r-lg);
     padding: 1.5px;
-    background: var(--grad-primary);
+    background: linear-gradient(135deg, var(--teal-500), var(--cyan-400), var(--gold-soft));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.55s var(--ease);
     pointer-events: none;
+    z-index: 1;
 }
+/* Floating hover: card lifts, tilts and gains a deeper, glowing shadow */
 .service-card:hover {
-    transform: translateY(-12px) rotateX(2deg);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-14px) scale(1.015) rotateX(2deg);
+    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.75);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.65),
+        0 20px 45px rgba(6, 58, 55, 0.14),
+        0 40px 80px rgba(13, 148, 136, 0.22),
+        0 0 50px rgba(20, 184, 166, 0.30);
 }
 .service-card:hover::before { opacity: 1; }
 .service-icon {
@@ -818,16 +833,20 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); font-weigh
     width: 64px; height: 64px;
     border-radius: 18px;
     display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(145deg, rgba(13,148,136,0.1), rgba(6,182,212,0.1));
+    background: linear-gradient(145deg, rgba(13,148,136,0.14), rgba(6,182,212,0.14));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.5);
     color: var(--teal-700);
     font-size: 26px;
     margin-bottom: 24px;
-    transition: transform 0.4s var(--ease), background 0.4s ease, color 0.4s ease;
+    transition: transform 0.4s var(--ease), background 0.4s var(--ease), color 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 .service-card:hover .service-icon {
-    transform: rotate(-8deg) scale(1.08);
+    transform: rotate(-8deg) scale(1.1);
     background: var(--grad-primary);
     color: var(--white);
+    box-shadow: 0 10px 24px rgba(13,148,136,0.35);
 }
 .service-card h3 { position: relative; z-index: 1; color: #000; font-size: 21px; margin-bottom: 12px; }
 .service-card p { position: relative; z-index: 1; color: #111827; font-size: 15px; margin-bottom: 20px; }
@@ -844,6 +863,16 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); font-weigh
     transition: gap 0.3s ease;
 }
 .service-link:hover { gap: 14px; }
+
+/* Responsive tuning for the glass cards */
+@media (max-width: 768px) {
+    .service-card { padding: 36px 26px; }
+    .service-card:hover { transform: translateY(-8px) scale(1.01); }
+}
+@media (hover: none), (pointer: coarse) {
+    /* No hover on touch devices — keep the glass look, drop the lift so cards don't feel "stuck" */
+    .service-card:hover { transform: none; }
+}
 
 /* ---------------------------- Testimonials ---------------------------- */
 .testimonials {
@@ -1196,10 +1225,12 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); font-weigh
 /* Elements flagged with [data-word-reveal] are split into individual words by
    SplitType at runtime; each word starts hidden/offset and fades in on scroll,
    one at a time, while previously revealed words remain visible. */
-[data-word-reveal] {
+[data-word-reveal],
+[data-word-reveal-heading] {
     opacity: 0; /* becomes visible via JS once split; prevents FOUC if JS is slow to init */
 }
-[data-word-reveal] .word {
+[data-word-reveal] .word,
+[data-word-reveal-heading] .word {
     display: inline-block;
     will-change: transform, opacity;
 }
