@@ -508,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ---------------------------- Generic Tilt Cards (about image, service cards) ---------------------------- */
+    /* ---------------------------- Generic Tilt Cards (about image, service cards, clinic card) ---------------------------- */
     if (isFinePointer && !prefersReducedMotion) {
         document.querySelectorAll('[data-tilt-card]').forEach(card => {
             card.addEventListener('mousemove', (e) => {
