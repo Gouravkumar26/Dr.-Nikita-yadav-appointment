@@ -216,8 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 0.1);
         }
 
-        tl.fromTo('.hero-content .eyebrow', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6 }, 0)
-          .fromTo('.hero-actions', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, 0.7)
+        tl.fromTo('.hero-actions', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, 0.7)
           .fromTo('.trust-badges', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, 0.82)
           .fromTo('.hero-image', { opacity: 0, scale: 0.85, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 1 }, 0.3);
     }
@@ -279,6 +278,46 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
     const aboutHandled = initAboutWordReveal();
+
+    /* ---------------------------- Hero Badge: Word-by-word Reveal + Shimmer (GSAP + SplitType) ---------------------------- */
+    // The "Board-Certified · AIIMS Delhi" hero badge reveals word-by-word via
+    // ScrollTrigger (consistent with the rest of the site's reveal system),
+    // then once every word has landed, a one-pass-per-cycle light shimmer
+    // sweeps across the text to give it a premium, polished finish.
+    function initHeroBadgeReveal() {
+        const badge = document.querySelector('[data-hero-badge-reveal]');
+        if (!badge) return;
+
+        if (prefersReducedMotion || !hasGsap || !hasSplitType) {
+            badge.style.opacity = 1;
+            return;
+        }
+
+        badge.style.opacity = 1;
+
+        const badgeSplit = new SplitType(badge, { types: 'words', tagName: 'span' });
+        if (!badgeSplit.words || !badgeSplit.words.length) {
+            return;
+        }
+
+        gsap.set(badgeSplit.words, { opacity: 0, y: 18 });
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: badge,
+                start: 'top 90%',
+                toggleActions: 'play none none none'
+            },
+            onComplete: () => badge.classList.add('shimmer')
+        }).to(badgeSplit.words, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power3.out',
+            stagger: 0.1
+        });
+    }
+    initHeroBadgeReveal();
 
     /* ---------------------------- Word-by-word Reveal (GSAP + SplitType) ---------------------------- */
     // Applies to remaining [data-word-reveal] paragraphs (currently the hero
