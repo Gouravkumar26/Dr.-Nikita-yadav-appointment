@@ -165,7 +165,6 @@ h1, h2, h3, h4 {
 }
 .hero-content .eyebrow.hero-badge .word {
     display: inline-block;
-    will-change: transform, opacity;
 }
 @supports (background-clip: text) or (-webkit-background-clip: text) {
     .hero-content .eyebrow.hero-badge.shimmer {
