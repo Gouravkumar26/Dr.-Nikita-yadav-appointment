@@ -546,34 +546,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ---------------------------- Testimonial Slider (auto-sliding) ---------------------------- */
-    const track = document.getElementById('testimonialTrack');
-    const dotsWrap = document.getElementById('sliderDots');
-    if (track) {
-        const slides = track.children.length;
-        let index = 0;
-
-        for (let i = 0; i < slides; i++) {
-            const dot = document.createElement('span');
-            dot.className = 'dot' + (i === 0 ? ' active' : '');
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsWrap.appendChild(dot);
-        }
-        const dots = dotsWrap.querySelectorAll('.dot');
-
-        function goToSlide(i) {
-            index = i;
-            track.style.transform = `translateX(-${index * 100}%)`;
-            dots.forEach((d, di) => d.classList.toggle('active', di === index));
-        }
-
-        let autoSlide = setInterval(() => goToSlide((index + 1) % slides), 5000);
-
-        track.parentElement.addEventListener('mouseenter', () => clearInterval(autoSlide));
-        track.parentElement.addEventListener('mouseleave', () => {
-            autoSlide = setInterval(() => goToSlide((index + 1) % slides), 5000);
-        });
-    }
+    /* ---------------------------- Testimonial Slider ---------------------------- */
+    // NOTE: The new testimonials card navigation (arrows + auto-rotate) lives
+    // entirely in the separate testimonials-v2.js file, loaded at the bottom
+    // of index.html. It intentionally does NOT live here, so this core
+    // script.js file never needs to be touched again for testimonial changes.
 
     /* ---------------------------- FAQ Accordion ---------------------------- */
     document.querySelectorAll('.faq-item').forEach(item => {
