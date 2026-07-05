@@ -15,13 +15,13 @@
 
 :root {
     /* Color tokens */
-    --teal-900: #3B241D;   /* deepest brown — dark section base */
+    --teal-900: #3B241D;
     --teal-800: #4A2E24;
-    --teal-700: #6A4334;   /* rich dark brown — primary heading / accent */
+    --teal-700: #6A4334;
     --teal-600: #7C5240;
-    --teal-500: #A87645;   /* golden brown — accent */
-    --cyan-400: #B88A57;   /* warm tan (replaces bright accent) */
-    --cyan-300: #D8B98F;   /* soft gold (replaces bright accent) */
+    --teal-500: #A87645;
+    --cyan-400: #B88A57;
+    --cyan-300: #D8B98F;
     --gold: #A87645;
     --gold-soft: #D8B98F;
     --ivory: #FEF7EF;
@@ -32,7 +32,6 @@
     --line: #F4ECE4;
     --btn-brown: #6F4333;
 
-    /* Gradients */
     --grad-primary: linear-gradient(135deg, var(--btn-brown), var(--teal-500));
     --grad-dark: linear-gradient(160deg, var(--teal-900), #2E1C15 55%, #21140F);
     --grad-mesh: radial-gradient(at 15% 20%, rgba(168,118,69,0.16) 0px, transparent 50%),
@@ -40,30 +39,24 @@
                  radial-gradient(at 50% 85%, rgba(111,67,51,0.10) 0px, transparent 50%),
                  radial-gradient(at 90% 90%, rgba(168,118,69,0.12) 0px, transparent 50%);
 
-    /* Shadow */
     --shadow-sm: 0 4px 16px rgba(106, 67, 52, 0.08);
     --shadow-md: 0 12px 32px rgba(106, 67, 52, 0.10);
     --shadow-lg: 0 24px 60px rgba(106, 67, 52, 0.16);
     --shadow-glow: 0 0 0 1px rgba(255,255,255,0.06), 0 20px 50px rgba(111,67,51,0.25);
 
-    /* Radius */
     --r-sm: 14px;
     --r-md: 24px;
     --r-lg: 32px;
     --r-pill: 999px;
 
-    /* Type */
     --font-display: 'Cormorant Garamond', serif;
     --font-body: 'Manrope', sans-serif;
 
-    /* Motion */
     --ease: cubic-bezier(.22, 1, .36, 1);
     --ease-soft: cubic-bezier(.16, 1, .3, 1);
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
     font-family: var(--font-body);
@@ -73,7 +66,6 @@ body {
     letter-spacing: 0.005em;
     overflow-x: hidden;
     cursor: none;
-
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -85,7 +77,6 @@ button { font-family: inherit; border: none; background: none; cursor: none; }
 
 ::selection { background: var(--teal-500); color: var(--white); }
 
-/* Custom premium scrollbar */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--ivory); }
 ::-webkit-scrollbar-thumb {
@@ -94,13 +85,11 @@ button { font-family: inherit; border: none; background: none; cursor: none; }
     border: 2px solid var(--ivory);
 }
 
-/* Disable custom cursor on touch devices */
 @media (hover: none), (pointer: coarse) {
     body, button { cursor: auto; }
     .cursor-dot, .cursor-ring { display: none !important; }
 }
 
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -112,7 +101,6 @@ button { font-family: inherit; border: none; background: none; cursor: none; }
     body, button { cursor: auto; }
 }
 
-/* Reusable type scale */
 h1, h2, h3, h4 {
     font-family: var(--font-display);
     color: var(--ink);
@@ -144,7 +132,6 @@ h1, h2, h3, h4 {
 .eyebrow.center { justify-content: center; width: 100%; }
 .eyebrow.light { color: var(--gold-soft); }
 
-/* Hero badge — elevated to a proper H3-level heading treatment */
 @media (max-width: 768px) {
     .hero-anim {
         animation-delay: 0s !important;
@@ -154,7 +141,7 @@ h1, h2, h3, h4 {
 }
 .hero-content .eyebrow.hero-badge {
     font-family: var(--font-display);
-    font-size: clamp(20px, 5.5vw, 30px);   /* changed: mobile pe aur chhota ho sakta hai */
+    font-size: clamp(20px, 5.5vw, 30px);
     font-weight: 700;
     font-style: normal;
     text-transform: none;
@@ -163,10 +150,10 @@ h1, h2, h3, h4 {
     color: var(--ink);
     gap: 14px;
     margin-bottom: 20px;
-    flex-wrap: wrap;              /* new: dash + text ko wrap hone do */
-    width: 100%;                  /* new: container ki full width le, shrink-to-fit overflow na ho */
+    flex-wrap: wrap;
+    width: 100%;
     max-width: 100%;
-    word-break: break-word;       /* new: agar zaroorat pade to "BOARD-CERTIFIED" bhi wrap ho sake */
+    word-break: break-word;
     overflow-wrap: break-word;
 }
 .hero-content .eyebrow.hero-badge::before {
@@ -178,7 +165,6 @@ h1, h2, h3, h4 {
     display: inline-block;
     will-change: transform, opacity;
 }
-/* Shimmer / light-sweep pass, applied once the word-by-word reveal completes */
 @supports (background-clip: text) or (-webkit-background-clip: text) {
     .hero-content .eyebrow.hero-badge.shimmer {
         background-image: linear-gradient(
@@ -228,7 +214,6 @@ h1, h2, h3, h4 {
     line-height: 1.75;
 }
 
-/* ---------------------------- Custom Cursor ---------------------------- */
 .cursor-dot, .cursor-ring {
     position: fixed;
     top: 0; left: 0;
@@ -259,7 +244,6 @@ h1, h2, h3, h4 {
 .cursor-ring.on-dark { border-color: rgba(255,255,255,0.6); }
 .cursor-dot.on-dark { background: var(--cyan-300); }
 
-/* ---------------------------- Grain Overlay ---------------------------- */
 .grain-overlay {
     position: fixed;
     inset: 0;
@@ -271,7 +255,6 @@ h1, h2, h3, h4 {
     mix-blend-mode: overlay;
 }
 
-/* ---------------------------- Loading Screen ---------------------------- */
 .loader {
     position: fixed;
     inset: 0;
@@ -327,7 +310,6 @@ h1, h2, h3, h4 {
 }
 @keyframes loaderFill { to { width: 100%; } }
 
-/* ---------------------------- Scroll Progress ---------------------------- */
 .scroll-progress {
     position: fixed;
     top: 0;
@@ -339,7 +321,6 @@ h1, h2, h3, h4 {
     transition: width 0.1s linear;
 }
 
-/* ---------------------------- Cursor Glow ---------------------------- */
 .cursor-glow {
     position: fixed;
     width: 380px;
@@ -359,7 +340,6 @@ h1, h2, h3, h4 {
     .cursor-glow { display: none; }
 }
 
-/* ---------------------------- Navbar ---------------------------- */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -406,10 +386,7 @@ h1, h2, h3, h4 {
 }
 .logo span { color: var(--teal-500); }
 
-.nav-links {
-    display: flex;
-    gap: 34px;
-}
+.nav-links { display: flex; gap: 34px; }
 .nav-links li a {
     text-decoration: none;
     color: var(--ink-soft);
@@ -446,13 +423,8 @@ h1, h2, h3, h4 {
 }
 .btn-nav-cta:hover { box-shadow: 0 10px 24px rgba(111, 67, 51, 0.35); }
 
-.hamburger {
-    display: none;
-    font-size: 22px;
-    color: var(--ink);
-}
+.hamburger { display: none; font-size: 22px; color: var(--ink); }
 
-/* ---------------------------- Buttons (shared) ---------------------------- */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -482,7 +454,6 @@ h1, h2, h3, h4 {
 }
 .btn-ghost:hover { border-color: var(--teal-600); color: var(--teal-700); transform: translateY(-4px); }
 
-/* Shine sweep */
 .btn::before {
     content: '';
     position: absolute;
@@ -496,7 +467,6 @@ h1, h2, h3, h4 {
 .btn:hover::before { left: 120%; }
 .btn span, .btn i { position: relative; z-index: 2; }
 
-/* Ripple */
 .ripple { position: relative; }
 .ripple-circle {
     position: absolute;
@@ -509,7 +479,6 @@ h1, h2, h3, h4 {
 }
 @keyframes rippleAnim { to { transform: scale(3); opacity: 0; } }
 
-/* ---------------------------- Hero ---------------------------- */
 .hero {
     position: relative;
     min-height: 92vh;
@@ -536,12 +505,7 @@ h1, h2, h3, h4 {
     50% { transform: translate(-2%, 2%) rotate(2deg); }
 }
 
-.particle-field {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-}
+.particle-field { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 
 .aurora {
     position: absolute;
@@ -551,12 +515,7 @@ h1, h2, h3, h4 {
     filter: blur(60px);
     will-change: transform;
 }
-.aurora-blob {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.5;
-    mix-blend-mode: multiply;
-}
+.aurora-blob { position: absolute; border-radius: 50%; opacity: 0.5; mix-blend-mode: multiply; }
 .blob-1 {
     width: 480px; height: 480px;
     top: -140px; left: -100px;
@@ -601,18 +560,13 @@ h1, h2, h3, h4 {
 }
 
 .hero-content { position: relative; z-index: 2; flex: 1; max-width: 640px; }
-
 .hero-content h1 {
     font-size: clamp(40px, 5.4vw, 70px);
     line-height: 1.12;
     font-weight: 600;
     margin-bottom: 22px;
 }
-.hero-content h1 .char {
-    display: inline-block;
-    will-change: transform, opacity;
-}
-
+.hero-content h1 .char { display: inline-block; will-change: transform, opacity; }
 .hero-content p {
     color: var(--muted);
     margin-bottom: 32px;
@@ -646,7 +600,7 @@ h1, h2, h3, h4 {
     display: flex;
     justify-content: center;
     align-items: center;
-     max-width: 420px;
+    max-width: 420px;
     width: 100%;
     height: auto;
     object-fit: contain;
@@ -660,7 +614,6 @@ h1, h2, h3, h4 {
     animation: glowPulse 5s ease-in-out infinite;
 }
 
-/* Orbiting rings around the doctor portrait — signature 3D depth device */
 .orbit-ring {
     position: absolute;
     border-radius: 50%;
@@ -727,14 +680,12 @@ h1, h2, h3, h4 {
 }
 @keyframes cueDrop { 0% { opacity: 1; top: 6px; } 70% { opacity: 0; top: 22px; } 100% { opacity: 0; top: 6px; } }
 
-/* Wave divider */
 .wave-divider { line-height: 0; margin-top: -2px; position: relative; z-index: 3; }
 .wave-divider svg { width: 100%; height: 70px; display: block; }
 .wave-divider path { fill: var(--ivory); }
 .wave-divider.flip { transform: rotate(180deg); margin-top: 0; margin-bottom: -2px; }
 .wave-divider.flip path { fill: var(--teal-900); }
 
-/* ---------------------------- Stats ---------------------------- */
 .stats {
     display: flex;
     justify-content: space-around;
@@ -758,7 +709,6 @@ h1, h2, h3, h4 {
 .stat-box h3 { font-size: 34px; color: var(--ink); font-family: var(--font-display); }
 .stat-box p { color: var(--muted); font-size: 14px; margin-top: 4px; font-weight: 600; letter-spacing: 0.01em; }
 
-/* ---------------------------- About ---------------------------- */
 .about { padding: 130px 6% 100px; background: var(--ivory); }
 .about-grid {
     max-width: 1180px;
@@ -836,7 +786,6 @@ h1, h2, h3, h4 {
 }
 .credentials i { color: var(--teal-600); }
 
-/* ---------------------------- Services ---------------------------- */
 .services { padding: 110px 6%; background: linear-gradient(180deg, var(--ivory), #FBF1E6); }
 .services-grid {
     max-width: 1180px;
@@ -851,65 +800,40 @@ h1, h2, h3, h4 {
     min-height:420px;
     padding:40px 30px;
     border-radius:32px;
-
     display:flex;
     flex-direction:column;
     justify-content:flex-end;
-
     background:rgba(255,255,255,.08);
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
-
     border:1px solid rgba(255,255,255,.18);
-
     box-shadow:0 20px 50px rgba(59,36,29,.20);
-
     transition:.6s ease;
-
     isolation:isolate;
 }
 .card-video{
     position:absolute;
     inset:0;
-
     width:100%;
     height:100%;
-
     object-fit:cover;
-
     z-index:-3;
-
     transform:scale(1);
-
     transition:transform 8s linear;
 }
 .card-overlay{
     position:absolute;
     inset:0;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(20,12,9,.72),
-            rgba(20,12,9,.18)
-        );
-
+    background: linear-gradient(to top, rgba(20,12,9,.72), rgba(20,12,9,.18));
     z-index:-2;
 }
-
 .service-card>*:not(.card-video):not(.card-overlay){
     position:relative;
     z-index:2;
 }
-
-.service-card h3,
-.service-card p,
-.service-card a{
-    color:#fff;
-}
+.service-card h3, .service-card p, .service-card a{ color:#fff; }
 .service-card h3 { font-family: var(--font-display); }
 
-/* Radial glow that follows the cursor within a card */
 .card-glow {
     position: absolute;
     inset: 0;
@@ -925,64 +849,18 @@ h1, h2, h3, h4 {
     content:"";
     position:absolute;
     inset:0;
-
     border-radius:inherit;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.20),
-            rgba(255,255,255,.03)
-        );
-
+    background: linear-gradient(135deg, rgba(255,255,255,.20), rgba(255,255,255,.03));
     z-index:-1;
-
     pointer-events:none;
 }
-.service-card:hover{
-    transform:translateY(-12px);
-    box-shadow:0 35px 70px rgba(59,36,29,.30);
-}
+.service-card:hover{ transform:translateY(-12px); box-shadow:0 35px 70px rgba(59,36,29,.30); }
+.service-card:hover .card-video{ transform:scale(1.12); }
+.service-card h3{ color:#fff; font-size:26px; font-weight: 600; margin-bottom:14px; letter-spacing: 0.01em; }
+.service-card p{ color:rgba(255,255,255,.92); line-height:1.75; }
+.service-link{ color:#fff; font-weight:700; letter-spacing: 0.01em; text-decoration:none; }
 
-.service-card:hover .card-video{
-    transform:scale(1.12);
-}
-.service-card h3{
-    color:#fff;
-    font-size:26px;
-    font-weight: 600;
-    margin-bottom:14px;
-    letter-spacing: 0.01em;
-}
-
-.service-card p{
-    color:rgba(255,255,255,.92);
-    line-height:1.75;
-}
-
-.service-link{
-    color:#fff;
-    font-weight:700;
-    letter-spacing: 0.01em;
-    text-decoration:none;
-}
-/* ---------------------------- Testimonials ---------------------------- */
-/* ==========================================================================
-   Testimonials Redesign ("What Our Patients Say") — Standalone Stylesheet
-   --------------------------------------------------------------------------
-   Kept completely separate from style.css. Reuses the site's existing CSS
-   custom properties (--ivory, --gold, --teal-700, --r-lg, --shadow-*, etc.)
-   so it automatically matches the rest of the site. Load this AFTER
-   style.css. Old .testimonial-marquee / .testimonial-video rules in
-   style.css are simply left unused — nothing to remove, nothing broken.
-   ========================================================================== */
-
-.testimonials-v2 {
-    padding: 110px 6%;
-    background: var(--ivory);
-    overflow: hidden;
-}
-
+.testimonials-v2 { padding: 110px 6%; background: var(--ivory); overflow: hidden; }
 .testi-wrap {
     max-width: 1180px;
     margin: 0 auto;
@@ -991,30 +869,11 @@ h1, h2, h3, h4 {
     gap: 70px;
     align-items: center;
 }
-
-/* ---------------------------- Left column ---------------------------- */
 .testi-left { max-width: 480px; }
+.testi-heading { font-size: clamp(38px, 4.6vw, 58px); line-height: 1.12; margin-bottom: 18px; }
+.testi-sub { color: var(--muted); font-size: 16px; line-height: 1.8; margin-bottom: 34px; max-width: 420px; }
 
-.testi-heading {
-    font-size: clamp(38px, 4.6vw, 58px);
-    line-height: 1.12;
-    margin-bottom: 18px;
-}
-
-.testi-sub {
-    color: var(--muted);
-    font-size: 16px;
-    line-height: 1.8;
-    margin-bottom: 34px;
-    max-width: 420px;
-}
-
-/* Prev / Next arrow buttons */
-.testi-nav {
-    display: flex;
-    gap: 14px;
-    margin-bottom: 30px;
-}
+.testi-nav { display: flex; gap: 14px; margin-bottom: 30px; }
 .testi-arrow {
     width: 52px;
     height: 52px;
@@ -1030,20 +889,10 @@ h1, h2, h3, h4 {
     box-shadow: var(--shadow-sm);
     transition: background 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
-.testi-arrow:hover {
-    background: var(--grad-primary);
-    color: var(--white);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-}
+.testi-arrow:hover { background: var(--grad-primary); color: var(--white); transform: translateY(-3px); box-shadow: var(--shadow-md); }
 .testi-arrow:active { transform: translateY(0); }
 
-/* Card stack — cards are absolutely stacked and cross-fade via JS */
-.testi-card-wrap {
-    position: relative;
-    min-height: 240px;
-}
-
+.testi-card-wrap { position: relative; min-height: 240px; }
 .testi-card {
     position: absolute;
     inset: 0;
@@ -1057,32 +906,10 @@ h1, h2, h3, h4 {
     pointer-events: none;
     transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
 }
-.testi-card.active {
-    position: relative;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-.testi-card .stars {
-    color: var(--gold);
-    letter-spacing: 3px;
-    font-size: 15px;
-    margin-bottom: 16px;
-}
-
-.testi-quote {
-    color: var(--ink);
-    font-size: 17px;
-    line-height: 1.75;
-    margin-bottom: 26px;
-}
-
-.testi-person {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
+.testi-card.active { position: relative; opacity: 1; transform: translateY(0); pointer-events: auto; }
+.testi-card .stars { color: var(--gold); letter-spacing: 3px; font-size: 15px; margin-bottom: 16px; }
+.testi-quote { color: var(--ink); font-size: 17px; line-height: 1.75; margin-bottom: 26px; }
+.testi-person { display: flex; align-items: center; gap: 14px; }
 .testi-avatar {
     width: 46px;
     height: 46px;
@@ -1097,18 +924,11 @@ h1, h2, h3, h4 {
     justify-content: center;
     flex-shrink: 0;
 }
-.testi-person h4 {
-    font-family: var(--font-body);
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--ink);
-    letter-spacing: 0.005em;
-}
+.testi-person h4 { font-family: var(--font-body); font-size: 15px; font-weight: 700; color: var(--ink); letter-spacing: 0.005em; }
 .testi-person span { font-size: 13px; color: var(--muted); }
 
-/* ---------------------------- Right column: portrait + floating badge ---------------------------- */
+/* Right column: portrait video + floating badge */
 .testi-right { position: relative; }
-
 .testi-image-card {
     position: relative;
     width: 100%;
@@ -1116,14 +936,17 @@ h1, h2, h3, h4 {
     border-radius: var(--r-lg);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
+    background: var(--teal-900);
 }
-.testi-image-card img {
+.testi-image-card img,
+.testi-image-card video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 1.2s var(--ease);
 }
-.testi-image-card:hover img { transform: scale(1.06); }
+.testi-image-card:hover img,
+.testi-image-card:hover video { transform: scale(1.06); }
 
 .testi-image-overlay {
     position: absolute;
@@ -1132,9 +955,6 @@ h1, h2, h3, h4 {
     pointer-events: none;
 }
 
-/* Floating glass rating badge, bottom-right, overlapping the image —
-   consistent with the .achievement-card / .floating-card pattern already
-   used elsewhere on the site. */
 .testi-rating-badge {
     position: absolute;
     right: 24px;
@@ -1150,20 +970,8 @@ h1, h2, h3, h4 {
     text-align: center;
     color: var(--white);
 }
-.testi-rating-number {
-    display: block;
-    font-family: var(--font-display);
-    font-size: 34px;
-    font-weight: 600;
-    line-height: 1;
-    margin-bottom: 8px;
-}
-.testi-rating-stars {
-    color: var(--gold-soft);
-    font-size: 13px;
-    letter-spacing: 2px;
-    margin-bottom: 6px;
-}
+.testi-rating-number { display: block; font-family: var(--font-display); font-size: 34px; font-weight: 600; line-height: 1; margin-bottom: 8px; }
+.testi-rating-stars { color: var(--gold-soft); font-size: 13px; letter-spacing: 2px; margin-bottom: 6px; }
 .testi-rating-label {
     display: block;
     font-size: 10px;
@@ -1173,10 +981,7 @@ h1, h2, h3, h4 {
     color: rgba(255, 255, 255, 0.75);
     margin-bottom: 14px;
 }
-.testi-avatar-stack {
-    display: flex;
-    justify-content: center;
-}
+.testi-avatar-stack { display: flex; justify-content: center; }
 .stack-avatar {
     width: 30px;
     height: 30px;
@@ -1189,7 +994,6 @@ h1, h2, h3, h4 {
 .stack-avatar:first-child { margin-left: 0; }
 .stack-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-/* ---------------------------- Responsive ---------------------------- */
 @media (max-width: 1080px) {
     .testi-wrap { grid-template-columns: 1fr; gap: 50px; }
     .testi-left { max-width: 100%; text-align: center; }
@@ -1205,34 +1009,17 @@ h1, h2, h3, h4 {
     .testi-rating-badge { width: 140px; padding: 16px 14px; right: 16px; bottom: 16px; }
     .testi-rating-number { font-size: 28px; }
 }
-/* ---------------------------- FAQ ---------------------------- */
-.faq {
-    position: relative;
-    padding: 110px 6%;
-}
 
+.faq { position: relative; padding: 110px 6%; }
 .faq::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        180deg,
-        rgba(254,247,239,0.94),
-        rgba(59,36,29,0.35)
-    ),
+    background: linear-gradient(180deg, rgba(254,247,239,0.94), rgba(59,36,29,0.35)),
     url("images/faq-bg.png") center center/cover no-repeat;
     z-index: -1;
 }
-
-.faq-list {
-    max-width: 760px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-/* FAQ Card */
+.faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
 .faq-item {
     background: #FFFFFF;
     border: 1px solid var(--line);
@@ -1241,17 +1028,8 @@ h1, h2, h3, h4 {
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
 }
-
-.faq-item:hover {
-    background: #FFFCF7;
-    box-shadow: 0 12px 30px rgba(106, 67, 52, 0.14);
-}
-
-.faq-item.open {
-    box-shadow: 0 12px 30px rgba(106, 67, 52, 0.16);
-}
-
-/* Question */
+.faq-item:hover { background: #FFFCF7; box-shadow: 0 12px 30px rgba(106, 67, 52, 0.14); }
+.faq-item.open { box-shadow: 0 12px 30px rgba(106, 67, 52, 0.16); }
 .faq-question {
     width: 100%;
     display: flex;
@@ -1264,36 +1042,12 @@ h1, h2, h3, h4 {
     letter-spacing: 0.005em;
     color: var(--ink);
 }
+.faq-question i { color: var(--teal-500); transition: transform 0.35s var(--ease); }
+.faq-item.open .faq-question i { transform: rotate(180deg); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.45s var(--ease), padding 0.3s ease; padding: 0 26px; }
+.faq-item.open .faq-answer { max-height: 220px; padding: 0 26px 24px; }
+.faq-answer p { color: var(--muted); font-size: 15px; line-height: 1.85; }
 
-/* Arrow Icon */
-.faq-question i {
-    color: var(--teal-500);
-    transition: transform 0.35s var(--ease);
-}
-
-.faq-item.open .faq-question i {
-    transform: rotate(180deg);
-}
-
-/* Answer */
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.45s var(--ease), padding 0.3s ease;
-    padding: 0 26px;
-}
-
-.faq-item.open .faq-answer {
-    max-height: 220px;
-    padding: 0 26px 24px;
-}
-
-.faq-answer p {
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.85;
-}
-/* ---------------------------- Contact / Appointment ---------------------------- */
 .contact { padding: 110px 6%; }
 .contact-wrapper { max-width: 1180px; margin: 0 auto; display: flex; gap: 50px; flex-wrap: wrap; }
 .appointment-form {
@@ -1329,10 +1083,7 @@ h1, h2, h3, h4 {
     background: var(--white);
     padding: 0 4px;
 }
-.form-group input:focus, .form-group select:focus {
-    border-color: var(--teal-600);
-    box-shadow: 0 0 0 4px rgba(111, 67, 51, 0.12);
-}
+.form-group input:focus, .form-group select:focus { border-color: var(--teal-600); box-shadow: 0 0 0 4px rgba(111, 67, 51, 0.12); }
 .form-group input:focus + label,
 .form-group input:not(:placeholder-shown) + label,
 .form-group select.filled + label {
@@ -1342,70 +1093,27 @@ h1, h2, h3, h4 {
     font-weight: 700;
 }
 .select-label { top: -9px !important; left: 12px !important; font-size: 12px !important; color: var(--teal-700) !important; font-weight: 700; }
-.field-error {
-    display: none;
-    color: #B23A2E;
-    font-size: 12px;
-    margin-top: 6px;
-    padding-left: 4px;
-}
-.form-group.invalid input,
-.form-group.invalid select { border-color: #B23A2E; }
+.field-error { display: none; color: #B23A2E; font-size: 12px; margin-top: 6px; padding-left: 4px; }
+.form-group.invalid input, .form-group.invalid select { border-color: #B23A2E; }
 .form-group.invalid .field-error { display: block; }
 
-.btn-submit {
-    background: var(--grad-primary);
-    color: var(--white);
-    width: 100%;
-    justify-content: center;
-    font-size: 16px;
-    box-shadow: 0 10px 28px rgba(111, 67, 51, 0.3);
-}
+.btn-submit { background: var(--grad-primary); color: var(--white); width: 100%; justify-content: center; font-size: 16px; box-shadow: 0 10px 28px rgba(111, 67, 51, 0.3); }
 .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(111, 67, 51, 0.4); }
 .btn-submit:disabled { opacity: 0.75; cursor: not-allowed; transform: none; }
 
 .appointment-form.submitted form { display: none; }
-.form-success {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 30px 10px;
-}
+.form-success { display: none; flex-direction: column; align-items: center; text-align: center; padding: 30px 10px; }
 .appointment-form.submitted .form-success { display: flex; }
 .success-check { width: 84px; height: 84px; margin-bottom: 20px; }
 .success-check svg { width: 100%; height: 100%; }
-.success-check circle {
-    fill: none;
-    stroke: var(--teal-600);
-    stroke-width: 3;
-    stroke-dasharray: 166;
-    stroke-dashoffset: 166;
-    animation: circleDraw 0.6s ease forwards;
-}
-.success-check path {
-    fill: none;
-    stroke: var(--teal-600);
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-dasharray: 48;
-    stroke-dashoffset: 48;
-    animation: checkDraw 0.4s 0.5s ease forwards;
-}
+.success-check circle { fill: none; stroke: var(--teal-600); stroke-width: 3; stroke-dasharray: 166; stroke-dashoffset: 166; animation: circleDraw 0.6s ease forwards; }
+.success-check path { fill: none; stroke: var(--teal-600); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 48; stroke-dashoffset: 48; animation: checkDraw 0.4s 0.5s ease forwards; }
 @keyframes circleDraw { to { stroke-dashoffset: 0; } }
 @keyframes checkDraw { to { stroke-dashoffset: 0; } }
 .form-success h3 { margin-bottom: 8px; }
 .form-success p { color: var(--muted); font-size: 15px; }
 
-/* ---------------------------- Clinic Card (Premium Glass, fully responsive) ---------------------------- */
-.contact-info {
-    flex: 1;
-    min-width: 320px;
-    padding: 0;
-    background: none;
-    box-shadow: none;
-}
+.contact-info { flex: 1; min-width: 320px; padding: 0; background: none; box-shadow: none; }
 .contact-info::before { content: none; }
 
 .clinic-card {
@@ -1418,30 +1126,12 @@ h1, h2, h3, h4 {
     overflow: hidden;
     animation: clinicFloat 4.5s ease-in-out infinite;
 }
-
-.clinic-photo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 36px;
-    overflow: hidden;
-}
-.clinic-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1.2s var(--ease);
-}
+.clinic-photo { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 36px; overflow: hidden; }
+.clinic-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
 .clinic-photo-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        180deg,
-        rgba(59, 36, 29, 0.15) 0%,
-        rgba(74, 46, 36, 0.55) 55%,
-        rgba(43, 27, 20, 0.92) 100%
-    );
+    background: linear-gradient(180deg, rgba(59, 36, 29, 0.15) 0%, rgba(74, 46, 36, 0.55) 55%, rgba(43, 27, 20, 0.92) 100%);
 }
 
 .clinic-glass {
@@ -1455,13 +1145,11 @@ h1, h2, h3, h4 {
     margin: auto 0;
     border-radius: 36px;
     padding: 6% 5%;
-
     background: rgba(74, 46, 36, 0.45);
     backdrop-filter: blur(20px) saturate(140%);
     -webkit-backdrop-filter: blur(20px) saturate(140%);
     border: 1px solid rgba(255, 255, 255, 0.28);
     box-shadow: 0 20px 50px rgba(43, 27, 20, 0.45);
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1469,10 +1157,8 @@ h1, h2, h3, h4 {
     text-align: center;
     color: var(--white);
     overflow: hidden;
-
     transition: transform 0.5s var(--ease), backdrop-filter 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
-
 .clinic-glass-icon {
     width: 46px;
     height: 46px;
@@ -1487,43 +1173,11 @@ h1, h2, h3, h4 {
     font-size: 17px;
     margin-bottom: 12px;
 }
-
-.clinic-glass-title {
-    font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: 12px;
-    letter-spacing: 0.01em;
-}
-
-.clinic-glass-address {
-    font-size: 13px;
-    line-height: 1.65;
-    color: #EFE1D3;
-    display: flex;
-    align-items: flex-start;
-    gap: 7px;
-    text-align: left;
-    margin-bottom: 16px;
-}
+.clinic-glass-title { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 12px; letter-spacing: 0.01em; }
+.clinic-glass-address { font-size: 13px; line-height: 1.65; color: #EFE1D3; display: flex; align-items: flex-start; gap: 7px; text-align: left; margin-bottom: 16px; }
 .clinic-glass-address i { color: var(--gold-soft); margin-top: 3px; flex-shrink: 0; }
-
-.clinic-glass-divider {
-    width: 36px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.25);
-    margin-bottom: 16px;
-    flex-shrink: 0;
-}
-
-.clinic-glass-contacts {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    margin-bottom: 14px;
-}
+.clinic-glass-divider { width: 36px; height: 1px; background: rgba(255, 255, 255, 0.25); margin-bottom: 16px; flex-shrink: 0; }
+.clinic-glass-contacts { display: flex; flex-direction: column; gap: 10px; width: 100%; margin-bottom: 14px; }
 .clinic-contact-row {
     display: flex;
     align-items: center;
@@ -1541,10 +1195,7 @@ h1, h2, h3, h4 {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.clinic-contact-row:hover {
-    background: rgba(255, 255, 255, 0.14);
-    transform: translateX(4px);
-}
+.clinic-contact-row:hover { background: rgba(255, 255, 255, 0.14); transform: translateX(4px); }
 .clinic-contact-icon {
     width: 28px;
     height: 28px;
@@ -1557,49 +1208,25 @@ h1, h2, h3, h4 {
     color: var(--gold-soft);
     font-size: 12px;
 }
-
-.clinic-glass-hours {
-    font-size: 11.5px;
-    color: rgba(255, 255, 255, 0.75);
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    margin-bottom: 18px;
-    flex-shrink: 0;
-}
+.clinic-glass-hours { font-size: 11.5px; color: rgba(255, 255, 255, 0.75); display: flex; align-items: center; gap: 7px; margin-bottom: 18px; flex-shrink: 0; }
 .clinic-glass-hours i { color: var(--gold-soft); }
+.clinic-glass .call-direct-btn { margin-top: 0; text-decoration: none; flex-shrink: 0; font-size: 13px; padding: 11px 22px; }
 
-.clinic-glass .call-direct-btn {
-    margin-top: 0;
-    text-decoration: none;
-    flex-shrink: 0;
-    font-size: 13px;
-    padding: 11px 22px;
-}
-
-/* Hover: lift, deepen blur, soft glow */
 .clinic-card:hover .clinic-glass {
     transform: translateX(-50%) translateY(-10px);
     backdrop-filter: blur(28px) saturate(150%);
     -webkit-backdrop-filter: blur(28px) saturate(150%);
     box-shadow: 0 30px 70px rgba(43, 27, 20, 0.5), 0 0 40px rgba(216, 185, 143, 0.3);
 }
-.clinic-card:hover .clinic-photo img {
-    transform: scale(1.08);
-}
+.clinic-card:hover .clinic-photo img { transform: scale(1.08); }
 
-/* Ambient float */
-@keyframes clinicFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
+@keyframes clinicFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
 @media (prefers-reduced-motion: reduce) {
     .clinic-card { animation: none; }
     .clinic-card:hover .clinic-glass { transform: translateX(-50%); }
 }
 
-/* ---------------------------- Footer ---------------------------- */
 .site-footer { background: #2B1B14; color: #C9B7A8; padding: 80px 6% 0; }
 .footer-grid {
     max-width: 1180px;
@@ -1631,16 +1258,7 @@ h1, h2, h3, h4 {
 .footer-contact i { color: var(--cyan-300); margin-top: 3px; }
 .footer-bottom { text-align: center; padding: 26px 0; font-size: 13px; color: #8A7565; }
 
-/* ---------------------------- Floating Action Buttons ---------------------------- */
-.floating-buttons {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 1000;
-}
+.floating-buttons { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
 .float-btn {
     width: 58px; height: 58px;
     border-radius: 50%;
@@ -1659,22 +1277,9 @@ h1, h2, h3, h4 {
 }
 .phone { background-color: var(--teal-700); }
 
-/* ---------------------------- Word-by-word Reveal (GSAP + SplitType) ---------------------------- */
-/* Elements flagged with [data-word-reveal] are split into individual words by
-   SplitType at runtime; each word starts hidden/offset and fades in on scroll,
-   one at a time, while previously revealed words remain visible. */
-[data-word-reveal],
-[data-word-reveal-heading],
-[data-hero-badge-reveal] {
-    opacity: 0; /* becomes visible via JS once split; prevents FOUC if JS is slow to init */
-}
-[data-word-reveal] .word,
-[data-word-reveal-heading] .word {
-    display: inline-block;
-    will-change: transform, opacity;
-}
+[data-word-reveal], [data-word-reveal-heading], [data-hero-badge-reveal] { opacity: 0; }
+[data-word-reveal] .word, [data-word-reveal-heading] .word { display: inline-block; will-change: transform, opacity; }
 
-/* ---------------------------- Scroll Reveal ---------------------------- */
 .reveal { opacity: 0; transition: opacity 0.9s var(--ease-soft), transform 0.9s var(--ease-soft), filter 0.9s var(--ease-soft); filter: blur(6px); }
 .reveal[data-reveal="fade"] { transform: translateY(24px); }
 .reveal[data-reveal="up"] { transform: translateY(50px); }
@@ -1691,15 +1296,12 @@ h1, h2, h3, h4 {
 .timeline .reveal:nth-child(2) { transition-delay: 0.1s; }
 .timeline .reveal:nth-child(3) { transition-delay: 0.2s; }
 
-/* Hero load-in sequence (driven by GSAP; CSS sets the resting/initial state) */
 .hero-anim { opacity: 0; }
 
-/* ---------------------------- Responsive ---------------------------- */
 @media (max-width: 1080px) {
     .about-grid { grid-template-columns: 1fr; }
     .about-media { max-width: 460px; margin: 0 auto; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
-
     .clinic-card { max-width: 480px; margin: 0 auto; }
 }
 
@@ -1727,9 +1329,7 @@ h1, h2, h3, h4 {
     .orbit-ring { display: none; }
 
     .stats { flex-direction: row; flex-wrap: wrap; width: 92%; }
-
     .contact-wrapper { flex-direction: column; }
-
     .clinic-card { max-width: 420px; min-height: 460px; aspect-ratio: auto; height: 460px; }
     .clinic-glass { max-width: 300px; }
 }
@@ -1764,48 +1364,11 @@ h1, h2, h3, h4 {
     .clinic-glass-hours { font-size: 10.5px; margin-bottom: 14px; }
     .clinic-glass .call-direct-btn { font-size: 12px; padding: 9px 18px; }
 
-html,
-body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-.about,
-.services,
-.testimonials,
-.faq,
-.contact,
-.site-footer,
-.stats,
-.hero {
-    overflow-x: hidden;
-}
-
-.service-card,
-.hero-image,
-.about-media,
-.testimonial-slider,
-.contact-wrapper,
-.footer-grid {
-    overflow: hidden;
-}
-
-.floating-buttons,
-.cursor-glow,
-.mesh-gradient,
-.aurora,
-.particle-field,
-.floating-icons {
-    overflow: hidden;
-}
-
-*,
-*::before,
-*::after {
-    max-width: 100%;
-}
-
+    html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+    .about, .services, .testimonials, .faq, .contact, .site-footer, .stats, .hero { overflow-x: hidden; }
+    .service-card, .hero-image, .about-media, .testimonial-slider, .contact-wrapper, .footer-grid { overflow: hidden; }
+    .floating-buttons, .cursor-glow, .mesh-gradient, .aurora, .particle-field, .floating-icons { overflow: hidden; }
+    *, *::before, *::after { max-width: 100%; }
 }
 
 @media (max-width: 380px) {

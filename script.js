@@ -224,11 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(playHeroSequence, 2600);
 
     /* ---------------------------- About: Heading → Paragraph Word Reveal (GSAP + SplitType) ---------------------------- */
-    // The About heading ("Meet Dr. Nitika Yadav, MD") reveals one word at a
-    // time; once every heading word is in, the paragraph beneath it starts
-    // its own word-by-word reveal using the same animation. Both are driven
-    // by a single GSAP timeline so the paragraph is guaranteed to start only
-    // after the heading has finished, on one shared scroll trigger.
     function initAboutWordReveal() {
         const heading = document.querySelector('[data-word-reveal-heading]');
         const paragraph = document.querySelector('.about-content [data-word-reveal]');
@@ -273,17 +268,13 @@ document.addEventListener('DOMContentLoaded', () => {
             duration: 0.55,
             ease: 'power3.out',
             stagger: 0.045
-        }, '+=0.15'); // paragraph only begins once every heading word has landed
+        }, '+=0.15');
 
         return true;
     }
     const aboutHandled = initAboutWordReveal();
 
     /* ---------------------------- Hero Badge: Word-by-word Reveal + Shimmer (GSAP + SplitType) ---------------------------- */
-    // The "Board-Certified · AIIMS Delhi" hero badge reveals word-by-word via
-    // ScrollTrigger (consistent with the rest of the site's reveal system),
-    // then once every word has landed, a one-pass-per-cycle light shimmer
-    // sweeps across the text to give it a premium, polished finish.
     function initHeroBadgeReveal() {
         const badge = document.querySelector('[data-hero-badge-reveal]');
         if (!badge) return;
@@ -320,25 +311,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroBadgeReveal();
 
     /* ---------------------------- Word-by-word Reveal (GSAP + SplitType) ---------------------------- */
-    // Applies to remaining [data-word-reveal] paragraphs (currently the hero
-    // intro). Words are split individually, fade + translateY in one at a
-    // time on scroll, and previously revealed words are left untouched (no
-    // exit animation), so the whole paragraph builds up and stays visible.
     function initWordReveal() {
         const wordRevealEls = Array.from(document.querySelectorAll('[data-word-reveal]'))
             .filter(el => !(aboutHandled && el.closest('.about-content')));
         if (!wordRevealEls.length) return;
 
-        // Graceful fallback: just show the text if a dependency is missing
-        // or the user prefers reduced motion.
         if (prefersReducedMotion || !hasGsap || !hasSplitType) {
             wordRevealEls.forEach(el => { el.style.opacity = 1; });
             return;
         }
 
         wordRevealEls.forEach(el => {
-            // The paragraph's own opacity is now controlled per-word, so make
-            // the container visible immediately and let the words handle it.
             el.style.opacity = 1;
 
             const split = new SplitType(el, { types: 'words', tagName: 'span' });
@@ -451,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             function tick(now) {
                 const progress = Math.min((now - start) / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
                 el.textContent = Math.floor(eased * target) + suffix;
                 if (progress < 1) requestAnimationFrame(tick);
                 else el.textContent = target + suffix;
