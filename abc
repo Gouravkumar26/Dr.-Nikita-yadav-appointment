@@ -1,33 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxury Orbit Gallery</title>
 
-Task 2
+<style>
 
-About page:
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-Heading:
-"Meet Dr. Nikita Yadav, MD"
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#f8f3ec,#ead7bf);
+overflow:hidden;
+font-family:Arial,sans-serif;
+}
 
-Show one word at a time.
+/* Main Container */
 
-After that animate the paragraph below using the same word reveal animation.
+.container{
 
-Return complete updated files only.
+position:relative;
+width:600px;
+height:600px;
 
+}
 
+/* Glow */
 
+.glow{
 
-Task 3
+position:absolute;
+width:380px;
+height:380px;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+border-radius:50%;
 
-Convert all Service cards into premium Glassmorphism Floating Cards.
+background:radial-gradient(circle,
+rgba(212,175,127,.45),
+transparent 70%);
 
-Requirements:
-- backdrop-filter blur
-- frosted glass
-- floating hover
-- glow border
-- premium shadow
-- smooth transitions
-- responsive
+filter:blur(35px);
 
-Modify only the existing code.
+}
 
-Return COMPLETE updated HTML, CSS and JavaScript.
+/* Center Image */
+
+.center{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+transform:translate(-50%,-50%);
+
+width:220px;
+height:220px;
+
+border-radius:50%;
+
+overflow:hidden;
+
+border:8px solid #cda86e;
+
+box-shadow:
+0 0 45px rgba(205,168,110,.55);
+
+z-index:10;
+
+}
+
+.center img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+/* Orbit */
+
+.orbit{
+
+position:absolute;
+width:100%;
+height:100%;
+
+animation:spin 18s linear infinite;
+
+}
+
+@keyframes spin{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* Image Cards */
+
+.item{
+
+position:absolute;
+
+width:120px;
+height:120px;
+
+border-radius:50%;
+
+padding:6px;
+
+background:white;
+
+box-shadow:
+0 15px 35px rgba(0,0,0,.25);
+
+}
+
+/* Keep images straight */
+
+.item img{
+
+width:100%;
+height:100%;
+
+border-radius:50%;
+
+object-fit:cover;
+
+animation:reverseSpin 18s linear infinite;
+
+}
+
+@keyframes reverseSpin{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(-360deg);
+
+}
+
+}
+
+/* Positions */
+
+.one{
+
+top:0;
+left:50%;
+transform:translateX(-50%);
+
+}
+
+.two{
+
+right:0;
+top:50%;
+transform:translateY(-50%);
+
+}
+
+.three{
+
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+
+}
+
+.four{
+
+left:0;
+top:50%;
+transform:translateY(-50%);
+
+}
+
+/* Responsive */
+
+@media(max-width:700px){
+
+.container{
+
+width:350px;
+height:350px;
+
+}
+
+.center{
+
+width:150px;
+height:150px;
+
+}
+
+.item{
+
+width:80px;
+height:80px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="glow"></div>
+
+<div class="center">
+<img src="images/doctor.jpg" alt="">
+</div>
+
+<div class="orbit">
+
+<div class="item one">
+<img src="images/1.jpg" alt="">
+</div>
+
+<div class="item two">
+<img src="images/2.jpg" alt="">
+</div>
+
+<div class="item three">
+<img src="images/3.jpg" alt="">
+</div>
+
+<div class="item four">
+<img src="images/4.jpg" alt="">
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

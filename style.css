@@ -1048,6 +1048,7 @@ h1, h2, h3, h4 {
 .faq-item.open .faq-answer { max-height: 220px; padding: 0 26px 24px; }
 .faq-answer p { color: var(--muted); font-size: 15px; line-height: 1.85; }
 
+
 .contact { padding: 110px 6%; }
 .contact-wrapper { max-width: 1180px; margin: 0 auto; display: flex; gap: 50px; flex-wrap: wrap; }
 .appointment-form {

@@ -545,6 +545,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+
+
+    if (isFinePointer && !prefersReducedMotion) {
+        document.querySelectorAll('[data-tilt-card]').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const y = (e.clientY - rect.top) / rect.height;
+                const rx = (0.5 - y) * 8;
+                const ry = (x - 0.5) * 8;
+                card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+                card.style.setProperty('--mx', (x * 100) + '%');
+                card.style.setProperty('--my', (y * 100) + '%');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+            });
+        });
+    }
     /* ---------------------------- Floating-label select fill state ---------------------------- */
     const serviceSelect = document.getElementById('service');
     if (serviceSelect) {
