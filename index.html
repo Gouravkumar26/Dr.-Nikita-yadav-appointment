@@ -369,6 +369,90 @@
     </div>
 </section>
 
+    <!-- =====================================================================
+         NEW SECTION — Before & After Transformations
+         ---------------------------------------------------------------------
+         Added directly below Testimonials, above FAQ, per request.
+         - Uses only existing design tokens from style.css (:root vars —
+           ivory / gold / teal-brown / white). No new colors introduced.
+         - All new styling lives in a clearly marked block at the very end
+           of style.css (search for "BEFORE & AFTER SECTION").
+         - No JavaScript file changes were needed: the auto-playing
+           before/after wipe is done in pure CSS (@keyframes) for smooth
+           60fps performance, and the "fade-in on scroll" behavior is
+           handled for free by the existing generic `.reveal` /
+           IntersectionObserver logic already in script.js — these cards
+           simply reuse the `.reveal` class exactly like every other
+           section on the site.
+         - Each of the 6 cards uses a different `--stagger` delay (inline
+           style) so the auto-wipe animations are offset from one another.
+         - Images are placeholder Unsplash skin/portrait photos — swap the
+           `src` attributes on `.ba-img-before` / `.ba-img-after` with real
+           before/after photography whenever ready; markup does not need
+           to change.
+    ===================================================================== -->
+    <section id="before-after" class="before-after">
+        <span class="eyebrow center reveal" data-reveal="fade">Real Results</span>
+        <h2 class="section-title reveal" data-reveal="fade">Before &amp; After Transformations</h2>
+        <p class="section-sub reveal" data-reveal="fade">
+            Real patient-inspired transformations demonstrating visible skincare improvements.
+        </p>
+
+        <div class="ba-grid">
+
+            <!-- Card 1 — Acne Treatment -->
+            <div class="ba-card reveal" data-reveal="up" style="--stagger:0s">
+                <div class="ba-media">
+                    <img class="ba-img-before" src="https://media.gettyimages.com/id/1390356580/photo/beautiful-woman-skin-care-clear-skin-woman-with-smooth-skin-closeup-after-photo.jpg?s=1024x1024&w=gi&k=20&c=caJdN2u2PUdE-UV74iGHxz6YU4WC8kNJcW-Tadg3BxM="imples-before-photo.jpg?s=" alt="Before acne treatment" loading="lazy" decoding="async">
+                    <img class="ba-img-after" src="https://media.gettyimages.com/id/1390356578/photo/acne-woman-skin-closeup-with-hormonal-acne-pimples-before-photo.jpg?s=1024x1024&w=gi&k=20&c=_pz3cK0vBiVDJKfkBue-RBRj6u_btfKvs4tmudyXpSo=" alt="After acne treatment" loading="lazy" decoding="async">
+                    <span class="ba-slider-line" aria-hidden="true"></span>
+                    <span class="ba-tag ba-tag-before">Before</span>
+                    <span class="ba-tag ba-tag-after">After</span>
+                </div>
+                <div class="ba-info">
+                    <h3>Acne Treatment</h3>
+                    <p>Visibly clearer, calmer skin with reduced breakouts and redness.</p>
+                </div>
+            </div>
+
+            <!-- Card 2 — Pigmentation Removal -->
+            <div class="ba-card reveal" data-reveal="up" style="--stagger:0.6s">
+                <div class="ba-media">
+                    <img class="ba-img-before" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=700" alt="Before pigmentation removal" loading="lazy" decoding="async">
+                    <img class="ba-img-after" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=700" alt="After pigmentation removal" loading="lazy" decoding="async">
+                    <span class="ba-slider-line" aria-hidden="true"></span>
+                    <span class="ba-tag ba-tag-before">Before</span>
+                    <span class="ba-tag ba-tag-after">After</span>
+                </div>
+                <div class="ba-info">
+                    <h3>Pigmentation Removal</h3>
+                    <p>Even-toned, brighter complexion with noticeably faded dark spots.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 — Hydra Facial -->
+            <div class="ba-card reveal" data-reveal="up" style="--stagger:1.2s">
+                <div class="ba-media">
+                    <img class="ba-img-before" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=700" alt="Before hydra facial" loading="lazy" decoding="async">
+                    <img class="ba-img-after" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=700" alt="After hydra facial" loading="lazy" decoding="async">
+                    <span class="ba-slider-line" aria-hidden="true"></span>
+                    <span class="ba-tag ba-tag-before">Before</span>
+                    <span class="ba-tag ba-tag-after">After</span>
+                </div>
+                <div class="ba-info">
+                    <h3>Hydra Facial</h3>
+                    <p>Deeply hydrated, plump and dewy skin with an instant healthy glow.</p>
+                </div>
+            </div>
+
+           
+
+        
+
+        </div>
+    </section>
+    <!-- =================== END Before & After Section =================== -->
+
     <!-- ===================== FAQ ===================== -->
     <section id="faq" class="faq">
         <span class="eyebrow center reveal" data-reveal="fade">Good to Know</span>

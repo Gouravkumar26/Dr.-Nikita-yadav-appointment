@@ -1432,3 +1432,226 @@ h1, h2, h3, h4 {
     .clinic-glass { max-width: 240px; padding: 16px 14px 14px; }
     .clinic-glass-title { font-size: 17px; }
 }
+
+/* ==========================================================================
+   ======================  BEFORE & AFTER SECTION  ==========================
+   ==========================================================================
+   NEW — added below Testimonials, above FAQ (see index.html).
+   Every color used below is one of the site's existing tokens:
+   --ivory / --white / --gold / --gold-soft / --teal-500/600/700 (soft brown)
+   No new palette, font, or breakpoint system was introduced — this block
+   reuses --shadow-lg, --ease, --grad-primary, --r-pill, etc. Border radius
+   is hard-coded to 24px per the "rounded corners 24px" requirement.
+   The auto-playing before/after wipe runs on a pure CSS animation
+   (clip-path) so it performs at 60fps without any JS timers, and each
+   card is offset using the inline `--stagger` custom property set in the
+   HTML so all six cards animate out of sync with one another.
+   ========================================================================== */
+
+.before-after {
+    padding: 110px 6%;
+    background: linear-gradient(180deg, var(--ivory), #FBF1E6);
+    position: relative;
+    overflow: hidden;
+}
+
+.ba-grid {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 34px;
+}
+
+/* ---- Card shell: glassmorphism + golden accent border + luxury shadow ---- */
+.ba-card {
+    position: relative;
+    border-radius: 24px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(168, 118, 69, 0.35); /* golden accent border */
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
+    isolation: isolate;
+}
+
+/* Soft golden glow ring layered just behind the card edge */
+.ba-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--gold), transparent 40%, var(--gold-soft));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Smooth hover lift + soft glow on hover */
+.ba-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 64px rgba(106, 67, 52, 0.24), 0 0 46px rgba(216, 185, 143, 0.35);
+    border-color: rgba(168, 118, 69, 0.6);
+}
+
+/* ---- Media: before/after stacked images with animated wipe reveal ---- */
+.ba-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3.2;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--teal-900);
+    /* Subtle floating animation on the media block, staggered per-card */
+    animation: baFloat 5.5s ease-in-out infinite;
+    animation-delay: var(--stagger, 0s);
+}
+
+.ba-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ba-img-before { z-index: 1; }
+
+/* The "after" image is revealed left-to-right via an animated clip-path.
+   Cycle (8s total), matched to the slider line below:
+     0%   – 25%   : fully hidden   (showing Before)
+     25%  – 37.5% : wipes in       (Before -> After)
+     37.5%– 62.5% : fully revealed (showing After, ~2s hold)
+     62.5%– 75%   : wipes back     (After -> Before)
+     75%  – 100%  : fully hidden   (Before, ~2s hold) */
+.ba-img-after {
+    z-index: 2;
+    clip-path: inset(0 100% 0 0);
+    animation: ba-reveal 8s ease-in-out infinite;
+    animation-delay: var(--stagger, 0s);
+}
+
+@keyframes ba-reveal {
+    0%      { clip-path: inset(0 100% 0 0); }
+    25%     { clip-path: inset(0 100% 0 0); }
+    37.5%   { clip-path: inset(0 0 0 0); }
+    62.5%   { clip-path: inset(0 0 0 0); }
+    75%     { clip-path: inset(0 100% 0 0); }
+    100%    { clip-path: inset(0 100% 0 0); }
+}
+
+/* Vertical comparison slider line that travels in sync with the wipe */
+.ba-slider-line {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+    box-shadow: 0 0 14px rgba(168, 118, 69, 0.7);
+    z-index: 3;
+    transform: translateX(-50%);
+    animation: ba-line 8s ease-in-out infinite;
+    animation-delay: var(--stagger, 0s);
+}
+.ba-slider-line::before,
+.ba-slider-line::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--gold);
+    transform: translateX(-50%);
+}
+.ba-slider-line::before { top: -4px; }
+.ba-slider-line::after { bottom: -4px; }
+
+@keyframes ba-line {
+    0%      { left: 0%; }
+    25%     { left: 0%; }
+    37.5%   { left: 100%; }
+    62.5%   { left: 100%; }
+    75%     { left: 0%; }
+    100%    { left: 0%; }
+}
+
+/* Before / After text tags */
+.ba-tag {
+    position: absolute;
+    top: 14px;
+    z-index: 4;
+    padding: 5px 14px;
+    border-radius: var(--r-pill);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: rgba(43, 27, 20, 0.55);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.ba-tag-before { left: 14px; }
+.ba-tag-after { right: 14px; }
+
+/* Gentle floating motion for the media block (subtle, ~6px amplitude) */
+@keyframes baFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+}
+
+/* ---- Card info: treatment name + improvement copy ---- */
+.ba-info {
+    position: relative;
+    z-index: 2;
+    padding: 20px 10px 10px;
+    text-align: center;
+}
+.ba-info h3 {
+    font-size: 21px;
+    margin-bottom: 8px;
+    color: var(--ink);
+}
+.ba-info p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+/* Respect reduced-motion preference: freeze the auto-wipe + float,
+   just show a static Before frame so nothing is jarring or inaccessible. */
+@media (prefers-reduced-motion: reduce) {
+    .ba-media,
+    .ba-img-after,
+    .ba-slider-line {
+        animation: none !important;
+    }
+    .ba-img-after { clip-path: inset(0 100% 0 0); }
+    .ba-slider-line { left: 0%; }
+}
+
+/* ---- Responsive: tablet ---- */
+@media (max-width: 1080px) {
+    .ba-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+}
+
+/* ---- Responsive: mobile (single column, same card treatment) ---- */
+@media (max-width: 600px) {
+    .before-after { padding: 80px 6%; }
+    .ba-grid { grid-template-columns: 1fr; gap: 24px; }
+    .ba-card { padding: 10px; border-radius: 20px; }
+    .ba-media { aspect-ratio: 4 / 3; border-radius: 14px; }
+    .ba-info h3 { font-size: 19px; }
+}
+
+/* =================== END BEFORE & AFTER SECTION =================== */
