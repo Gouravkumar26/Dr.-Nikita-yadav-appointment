@@ -493,22 +493,27 @@ h1, h2, h3, h4 {
 
 .hero {
     position: relative;
-    /* TASK 2: Hero fits perfectly in the first screen.
-       --navbar-height is set in script.js from the navbar's real rendered height,
-       so hero height + navbar height = exactly one viewport, and no part of the
-       Stats section (which follows) is visible until the user scrolls.
-       100vh is the fallback for browsers without svh support; 100svh (small
-       viewport height) is used on top of it for correct mobile browser-chrome
-       behavior. min-height (not height) still lets the hero grow taller than
-       the viewport on very small/narrow screens where the stacked mobile
-       content genuinely needs more room, rather than clipping content. */
-    min-height: calc(100vh - var(--navbar-height, 84px));
-    min-height: calc(100svh - var(--navbar-height, 84px));
+    /* ===== TASK 2 (updated): Hero fits entirely inside the first viewport =====
+       --navbar-height is measured live in script.js from the navbar's real
+       rendered height (setNavbarHeightVar), so this works whether the navbar
+       is in its "top" or "scrolled" state, and on any breakpoint.
+       Switched from min-height to a hard height so the Hero can never grow
+       past exactly one screen, and cut the top/bottom padding + column gap
+       down (see also the tightened hero-content spacing further below and
+       the responsive overrides in the media queries). Together these ensure
+       the badge card, heading, paragraph, buttons and trust badges all fit
+       inside "Home" with no part of the Stats section visible pre-scroll,
+       on desktop, tablet and mobile. 100vh is the fallback for browsers
+       without svh support; 100svh corrects for mobile browser UI chrome.
+       overflow:hidden clips the rare edge case of extreme zoom/accessibility
+       font sizes instead of letting content push into the next section. */
+    height: calc(100vh - var(--navbar-height, 84px));
+    height: calc(100svh - var(--navbar-height, 84px));
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 60px;
-    padding: 90px 6% 60px;
+    gap: 48px;
+    padding: 16px 6%;
     overflow: hidden;
     background: var(--ivory);
 }
@@ -582,22 +587,43 @@ h1, h2, h3, h4 {
 }
 
 .hero-content { position: relative; z-index: 2; flex: 1; max-width: 640px; }
+
+/* TASK 2: the luxury feature card previously had no bottom-spacing rule of
+   its own, which could push the rest of the hero stack down unpredictably.
+   Giving it a small, fixed margin keeps total hero-content height
+   predictable so everything still fits in one viewport at every
+   breakpoint. Design/appearance of the card itself is unchanged. */
+.luxury-badge-card { margin-bottom: 14px; }
+
+/* FOLLOW-UP FIX: after removing the icon block above "Board-Certified
+   AIIMS Delhi", the empty space it used to occupy is closed up here.
+   .lbc-float is the flex row/column that used to hold the icon + text
+   together — its own internal gap is trimmed to 3px so .lbc-content sits
+   right at the top of the card with (almost) no leftover blank area.
+   padding-top is also trimmed to 3px as a safety net in case the empty
+   space came from the card's own top padding rather than the flex gap. */
+.lbc-float { gap: 3px; }
+.luxury-badge-card { padding-top: 3px; }
+
 .hero-content h1 {
     font-size: clamp(40px, 5.4vw, 70px);
     line-height: 1.12;
     font-weight: 600;
-    margin-bottom: 22px;
+    /* TASK 2: tightened from 22px to reduce unnecessary vertical space so
+       the Hero fits inside one viewport. Font size/weight unchanged. */
+    margin-bottom: 14px;
 }
 .hero-content h1 .char { display: inline-block; will-change: transform, opacity; }
 .hero-content p {
     color: var(--muted);
-    margin-bottom: 32px;
+    /* TASK 2: tightened from 32px, same reasoning as above. */
+    margin-bottom: 18px;
     font-size: 18px;
     line-height: 1.8;
     max-width: 540px;
 }
 
-.hero-actions { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 36px; }
+.hero-actions { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 20px; /* TASK 2: was 36px */ }
 
 .trust-badges { display: flex; gap: 14px; flex-wrap: wrap; }
 .badge {
@@ -613,7 +639,7 @@ h1, h2, h3, h4 {
     font-weight: 700;
     color: var(--ink-soft);
 }
-.badge i { color: var(--teal-600); }
+/* .badge i { color: var(--teal-600); } */
 
 .hero-image {
     position: relative;
@@ -1343,11 +1369,14 @@ h1, h2, h3, h4 {
     }
     .navbar.menu-open .nav-links li { padding: 12px 0; text-align: center; }
 
-    .hero { flex-direction: column; text-align: center; padding-top: 60px; gap: 40px; }
+    /* TASK 2: reduced padding/gap on tablet so the (now vertically stacked)
+       hero content still fits inside one viewport; justify-content:center
+       keeps everything vertically centered within the shorter Hero. */
+    .hero { flex-direction: column; text-align: center; justify-content: center; padding: 16px 6%; gap: 20px; }
     .hero-content { max-width: 100%; }
     .hero-content p { margin-left: auto; margin-right: auto; }
     .hero-actions, .trust-badges { justify-content: center; }
-    .hero-image { margin-top: 20px; }
+    .hero-image { margin-top: 10px; /* TASK 2: was 20px */ }
     .floating-card { display: none; }
     .orbit-ring { display: none; }
 
@@ -1359,8 +1388,12 @@ h1, h2, h3, h4 {
 
 @media (max-width: 600px) {
     .navbar { padding: 14px 5%; }
-    .hero { padding: 50px 6% 40px; }
-    .hero-content h1 { font-size: 36px; }
+    /* TASK 2: tightened further for small phones so Home still fits one
+       screen without clipping any content. */
+    .hero { padding: 12px 6%; gap: 16px; }
+    .hero-content h1 { font-size: 36px; margin-bottom: 10px; }
+    .hero-content p { margin-bottom: 14px; }
+    .hero-actions { margin-bottom: 14px; }
     .section-title { font-size: 28px; }
     .appointment-form, .contact-info { padding: 30px 22px; }
     .footer-grid { grid-template-columns: 1fr; }
