@@ -85,12 +85,6 @@
 
         <div class="hero-content">
             <!-- ===== Premium Luxury Feature Card (replaces old "BOARD-CERTIFIED AIIMS DELHI" eyebrow badge) ===== -->
-            <!-- REQUIREMENT 1 UPDATE: the small award icon that previously sat above the
-                 "Board-Certified AIIMS Delhi" heading has been removed completely — the
-                 whole .lbc-media wrapper (and the <i class="fa-award">) is gone, not just
-                 hidden. Nothing was put in its place, so .lbc-content simply takes the
-                 icon's spot and the heading/subtitle remain perfectly centered exactly
-                 as before, with no leftover empty gap. -->
             <div class="luxury-badge-card reveal" data-reveal="fade" id="luxuryBadgeCard">
                 <div class="lbc-particles" aria-hidden="true">
                     <span></span><span></span><span></span><span></span><span></span><span></span>
@@ -100,15 +94,13 @@
                 <span class="lbc-corner lbc-corner-br" aria-hidden="true"></span>
 
                 <div class="lbc-float">
+                    <div class="lbc-media">
+                        <span class="lbc-badge-icon"><i class="fa-solid fa-award"></i></span>
+                    </div>
                     <div class="lbc-content">
                         <span class="lbc-accent-dot" aria-hidden="true"></span>
                         <h2 class="lbc-heading">Board-Certified <span>AIIMS Delhi</span></h2>
-                        <!-- REQUIREMENT 3 UPDATE: added the data-word-reveal attribute so this
-                             line is picked up by the exact same initWordReveal() word-by-word
-                             GSAP + SplitType animation (script.js) already used on the hero
-                             paragraph below ("Advanced dermatological care..."). Same easing,
-                             stagger and timing — text and typography are unchanged. -->
-                        <p class="lbc-subtitle" data-word-reveal># Advanced Aesthetic &amp; Dermatology Expertise</p>
+                        <p class="lbc-subtitle"># Advanced Aesthetic &amp; Dermatology Expertise</p>
                         <p class="lbc-desc"># Delivering evidence-based skincare treatments with precision, safety, and natural-looking results.</p>
                     </div>
                 </div>

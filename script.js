@@ -46,9 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
        so we measure its real rendered height and expose it to CSS as --navbar-height.
        style.css uses this to size the hero to exactly "100vh minus navbar height", which
        keeps the Home section perfectly contained in the first screen with no part of the
-       Stats section visible until the user actually scrolls. This measurement logic is
-       unchanged; only the CSS consuming --navbar-height was tightened (height instead of
-       min-height, reduced padding) so the Hero can never exceed one viewport. */
+       Stats section visible until the user actually scrolls. */
     function setNavbarHeightVar() {
         if (!navbar) return;
         // Use the navbar's un-scrolled (taller) height as the baseline so the hero
@@ -336,16 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initHeroBadgeReveal();
 
-    /* ---------------------------- Word-by-word Reveal (GSAP + SplitType) ----------------------------
-       TASK 3: no functional changes were needed here. This function already
-       queries every element carrying the data-word-reveal attribute and
-       animates its words in with an identical GSAP + SplitType stagger
-       (opacity 0→1, y 26→0, power3.out easing, 0.09s stagger, triggered at
-       'top 88%'). Since the upper hero paragraph (".lbc-subtitle", the
-       "# Advanced Aesthetic & Dermatology Expertise" line) now also carries
-       data-word-reveal in index.html, it is automatically picked up here
-       and animates with the exact same style, timing and easing as the
-       lower hero paragraph — no new code required. ---------------------------- */
+    /* ---------------------------- Word-by-word Reveal (GSAP + SplitType) ---------------------------- */
     function initWordReveal() {
         const wordRevealEls = Array.from(document.querySelectorAll('[data-word-reveal]'))
             .filter(el => !(aboutHandled && el.closest('.about-content')));
